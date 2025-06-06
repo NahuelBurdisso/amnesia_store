@@ -8,6 +8,7 @@ const featuredProducts = [
     image:
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     category: "men",
+    featured: true,
   },
   {
     id: 2,
@@ -70,68 +71,152 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Featured Products Section */}
-      <section className="py-24">
+      {/* Featured Products Section - Creative Magazine Layout */}
+      <section className="py-32 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="font-bodoni text-3xl">Featured Products</h2>
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20">
+            <div>
+              <h2 className="font-bodoni text-5xl md:text-6xl mb-4">
+                Featured
+              </h2>
+              <p className="font-montserrat text-gray-600 max-w-md">
+                Curated pieces that define this season&apos;s aesthetic
+              </p>
+            </div>
             <a
               href="/products"
-              className="flex items-center gap-2 hover:text-gray-600 transition-colors"
+              className="font-montserrat text-sm tracking-wide hover:text-gray-600 transition-colors mt-6 md:mt-0 group"
             >
-              View All <FaArrowRight className="text-sm" />
+              DISCOVER ALL
+              <div className="w-12 h-px bg-black group-hover:w-16 transition-all duration-300 mt-1"></div>
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {featuredProducts.map((product) => (
-              <div key={product.id} className="group">
-                <div className="relative aspect-[3/4] mb-4 overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500 grayscale hover:grayscale-0"
-                  />
+          {/* Responsive Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Large Featured Product */}
+            <div className="md:col-span-2 lg:row-span-2 group relative overflow-hidden aspect-[4/5] md:aspect-[3/4]">
+              <img
+                src={featuredProducts[0].image}
+                alt={featuredProducts[0].name}
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
+                <div className="text-white">
+                  <h3 className="font-bodoni text-3xl mb-2">
+                    {featuredProducts[0].name}
+                  </h3>
+                  <p className="font-montserrat text-lg">
+                    ${featuredProducts[0].price.toFixed(2)}
+                  </p>
                 </div>
-                <h3 className="font-light mb-2">{product.name}</h3>
-                <p className="text-gray-600">${product.price.toFixed(2)}</p>
+              </div>
+            </div>
+
+            {/* Other Products */}
+            {featuredProducts.slice(1).map((product) => (
+              <div
+                key={product.id}
+                className="group relative overflow-hidden aspect-[4/5]"
+              >
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="font-montserrat font-medium mb-1">
+                    {product.name}
+                  </h3>
+                  <p className="font-montserrat text-sm">
+                    ${product.price.toFixed(2)}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-24 bg-black text-white">
-        <div className="container mx-auto px-4">
-          <h2 className="font-bodoni text-3xl mb-12 text-center">
-            Shop by Category
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <a href="/category/men" className="group">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Men's Collection"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500 grayscale"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="font-bodoni text-3xl">Men</h3>
-                </div>
+      {/* Categories Section - Split Screen Design */}
+      <section className="min-h-screen relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+          {/* Men's Category */}
+          <div className="relative group overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Men's Collection"
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000"
+            />
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition duration-500" />
+
+            {/* Content Overlay */}
+            <div className="absolute inset-0 flex flex-col justify-between p-12 text-white">
+              <div className="flex justify-between items-start">
+                <h3 className="font-bodoni text-6xl md:text-7xl leading-none">
+                  Men
+                </h3>
+                <div className="w-16 h-px bg-white mt-8"></div>
               </div>
-            </a>
-            <a href="/category/women" className="group">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                  alt="Women's Collection"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500 grayscale"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="font-bodoni text-3xl">Women</h3>
+
+              <div className="flex justify-between items-end">
+                <div>
+                  <p className="font-montserrat text-sm tracking-widest mb-4 opacity-80">
+                    SOPHISTICATED ESSENTIALS
+                  </p>
+                  <p className="font-montserrat max-w-sm opacity-90">
+                    Timeless pieces designed for the modern gentleman
+                  </p>
                 </div>
+                <a
+                  href="/category/men"
+                  className="group/link font-montserrat text-sm tracking-wide hover:text-gray-200 transition-colors"
+                >
+                  EXPLORE
+                  <div className="w-8 h-px bg-white group-hover/link:w-12 transition-all duration-300 mt-1"></div>
+                </a>
               </div>
-            </a>
+            </div>
+          </div>
+
+          {/* Women's Category */}
+          <div className="relative group overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+              alt="Women's Collection"
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000"
+            />
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition duration-500" />
+
+            {/* Content Overlay */}
+            <div className="absolute inset-0 flex flex-col justify-between p-12 text-white">
+              <div className="flex justify-between items-start">
+                <h3 className="font-bodoni text-6xl md:text-7xl leading-none">
+                  Women
+                </h3>
+                <div className="w-16 h-px bg-white mt-8"></div>
+              </div>
+
+              <div className="flex justify-between items-end">
+                <div>
+                  <p className="font-montserrat text-sm tracking-widest mb-4 opacity-80">
+                    REFINED ELEGANCE
+                  </p>
+                  <p className="font-montserrat max-w-sm opacity-90">
+                    Contemporary designs that celebrate feminine grace
+                  </p>
+                </div>
+                <a
+                  href="/category/women"
+                  className="group/link font-montserrat text-sm tracking-wide hover:text-gray-200 transition-colors"
+                >
+                  EXPLORE
+                  <div className="w-8 h-px bg-white group-hover/link:w-12 transition-all duration-300 mt-1"></div>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
