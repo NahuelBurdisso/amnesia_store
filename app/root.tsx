@@ -1,5 +1,5 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -13,7 +13,19 @@ import "./tailwind.css";
 import { FaShoppingCart, FaUser, FaSearch } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Amnesia Store | Timeless Elegance" },
+    {
+      name: "description",
+      content:
+        "Discover timeless fashion at Amnesia Store. Shop our curated collection of elegant clothing and accessories.",
+    },
+  ];
+};
+
 export const links: LinksFunction = () => [
+  { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
