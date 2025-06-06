@@ -1,7 +1,7 @@
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { FaMinus, FaPlus, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
+import { Plus, Minus, Heart, ShoppingBag } from "lucide-react";
 
 // Mock product data
 const mockProduct = {
@@ -164,13 +164,12 @@ export default function Product() {
                   Cantidad
                 </h3>
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center border border-gray-300">
+                  <div className="flex items-center border border-gray-200">
                     <button
                       onClick={() => handleQuantityChange(false)}
-                      className="p-2 sm:p-3 hover:bg-gray-50 transition-colors"
-                      disabled={quantity <= 1}
+                      className="p-2 border border-gray-200 hover:border-gray-300 transition-colors"
                     >
-                      <FaMinus className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <Minus className="w-3 h-3 sm:w-4 sm:h-4 stroke-[1.5]" />
                     </button>
                     <span className="px-3 sm:px-4 py-2 sm:py-3 font-montserrat text-sm sm:text-base min-w-[3rem] text-center">
                       {quantity}
@@ -179,7 +178,7 @@ export default function Product() {
                       onClick={() => handleQuantityChange(true)}
                       className="p-2 sm:p-3 hover:bg-gray-50 transition-colors"
                     >
-                      <FaPlus className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <Plus className="w-3 h-3 sm:w-4 sm:h-4 stroke-[1.5]" />
                     </button>
                   </div>
                 </div>
@@ -188,11 +187,11 @@ export default function Product() {
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button className="flex-1 bg-black text-white py-3 sm:py-4 px-6 sm:px-8 font-montserrat text-sm sm:text-base hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
-                  <FaShoppingCart className="w-4 h-4" />
+                  <ShoppingBag className="w-4 h-4 stroke-[1.5]" />
                   Añadir al Carrito
                 </button>
                 <button className="flex-shrink-0 border border-gray-300 p-3 sm:p-4 hover:bg-gray-50 transition-colors">
-                  <FaHeart className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]" />
                 </button>
               </div>
             </div>

@@ -1,5 +1,5 @@
-import { FaArrowRight } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
+import { MoveRight } from "lucide-react";
 
 const featuredProducts = [
   {
@@ -227,13 +227,15 @@ export default function Index() {
               href="/category/men"
               className="font-bodoni text-base sm:text-lg text-white hover:text-gray-300 transition-colors flex items-center justify-center sm:justify-start gap-2 py-2"
             >
-              Comprar Hombre <FaArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+              Comprar Hombre{" "}
+              <MoveRight className="w-3 h-3 sm:w-4 sm:h-4 stroke-[1.5]" />
             </a>
             <a
               href="/category/women"
               className="font-bodoni text-base sm:text-lg text-white hover:text-gray-300 transition-colors flex items-center justify-center sm:justify-start gap-2 py-2"
             >
-              Comprar Mujer <FaArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+              Comprar Mujer{" "}
+              <MoveRight className="w-3 h-3 sm:w-4 sm:h-4 stroke-[1.5]" />
             </a>
           </div>
         </div>

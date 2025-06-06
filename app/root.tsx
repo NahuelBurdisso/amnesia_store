@@ -10,13 +10,7 @@ import {
   useLocation,
 } from "@remix-run/react";
 import "./tailwind.css";
-import {
-  FaShoppingCart,
-  FaUser,
-  FaSearch,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
+import { Search, User, ShoppingBag, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const meta: MetaFunction = () => [
@@ -128,7 +122,7 @@ export default function App() {
                       : "text-white hover:text-gray-200"
                   }`}
                 >
-                  <FaSearch className="w-4 h-4 lg:w-5 lg:h-5" />
+                  <Search className="w-4 h-4 lg:w-5 lg:h-5 stroke-[1.5]" />
                 </button>
                 <button
                   className={`p-2 transition-colors ${
@@ -137,7 +131,7 @@ export default function App() {
                       : "text-white hover:text-gray-200"
                   }`}
                 >
-                  <FaUser className="w-4 h-4 lg:w-5 lg:h-5" />
+                  <User className="w-4 h-4 lg:w-5 lg:h-5 stroke-[1.5]" />
                 </button>
                 <button
                   className={`p-2 transition-colors ${
@@ -146,7 +140,7 @@ export default function App() {
                       : "text-white hover:text-gray-200"
                   }`}
                 >
-                  <FaShoppingCart className="w-4 h-4 lg:w-5 lg:h-5" />
+                  <ShoppingBag className="w-4 h-4 lg:w-5 lg:h-5 stroke-[1.5]" />
                 </button>
               </div>
 
@@ -158,7 +152,7 @@ export default function App() {
                       : "text-white hover:text-gray-200"
                   }`}
                 >
-                  <FaShoppingCart className="w-4 h-4" />
+                  <ShoppingBag className="w-4 h-4 stroke-[1.5]" />
                 </button>
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -169,9 +163,9 @@ export default function App() {
                   }`}
                 >
                   {isMobileMenuOpen ? (
-                    <FaTimes className="w-5 h-5" />
+                    <X className="w-5 h-5 stroke-[1.5]" />
                   ) : (
-                    <FaBars className="w-5 h-5" />
+                    <Menu className="w-5 h-5 stroke-[1.5]" />
                   )}
                 </button>
               </div>
@@ -231,7 +225,7 @@ export default function App() {
                               : "text-black hover:text-gray-600"
                           }`}
                         >
-                          <FaSearch className="w-5 h-5" />
+                          <Search className="w-5 h-5 stroke-[1.5]" />
                         </button>
                         <button
                           className={`transition-colors ${
@@ -240,7 +234,7 @@ export default function App() {
                               : "text-black hover:text-gray-600"
                           }`}
                         >
-                          <FaUser className="w-5 h-5" />
+                          <User className="w-5 h-5 stroke-[1.5]" />
                         </button>
                       </div>
                     </div>
