@@ -2,12 +2,12 @@ import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { FaFilter } from "react-icons/fa";
 
-// Mock data - In a real app, this would come from a database
+// Mock data - En una aplicación real, esto vendría de una base de datos
 const products = {
   men: [
     {
       id: 1,
-      name: "Classic White T-Shirt",
+      name: "Camiseta Blanca Clásica",
       price: 29.99,
       image:
         "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
@@ -15,7 +15,7 @@ const products = {
     },
     {
       id: 2,
-      name: "Denim Jacket",
+      name: "Chaqueta de Mezclilla",
       price: 79.99,
       image:
         "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
@@ -26,7 +26,7 @@ const products = {
   women: [
     {
       id: 3,
-      name: "Summer Dress",
+      name: "Vestido de Verano",
       price: 49.99,
       image:
         "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
@@ -34,7 +34,7 @@ const products = {
     },
     {
       id: 4,
-      name: "Casual Sneakers",
+      name: "Zapatillas Casuales",
       price: 89.99,
       image:
         "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
@@ -55,10 +55,15 @@ const products = {
   ],
 };
 
+const categoryTranslations = {
+  men: "Hombre",
+  women: "Mujer",
+};
+
 export async function loader({ params }: LoaderFunctionArgs) {
   const category = params.category;
   if (!category || !(category in products)) {
-    throw new Response("Category not found", { status: 404 });
+    throw new Response("Categoría no encontrada", { status: 404 });
   }
 
   return json({
@@ -69,16 +74,17 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function Category() {
   const { category, products } = useLoaderData<typeof loader>();
+  const categoryName =
+    categoryTranslations[category as keyof typeof categoryTranslations] ||
+    category;
 
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="flex justify-between items-center mb-12">
-        <h1 className="font-bodoni text-4xl capitalize">
-          {category}&apos;s Collection
-        </h1>
+        <h1 className="font-bodoni text-4xl">Colección {categoryName}</h1>
         <button className="flex items-center gap-2 hover:text-gray-600 transition-colors">
           <FaFilter className="text-sm" />
-          Filter
+          Filtrar
         </button>
       </div>
 

@@ -14,11 +14,11 @@ import { FaShoppingCart, FaUser, FaSearch } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 export const meta: MetaFunction = () => [
-  { title: "Amnesia Store | Timeless Elegance" },
+  { title: "Amnesia Store | Elegancia Atemporal" },
   {
     name: "description",
     content:
-      "Discover timeless fashion at Amnesia Store. Shop our curated collection of elegant clothing and accessories.",
+      "Descubre la moda atemporal en Amnesia Store. Explora nuestra colección curada de ropa y accesorios elegantes.",
   },
   { name: "viewport", content: "width=device-width,initial-scale=1" },
   { charSet: "utf-8" },
@@ -54,7 +54,7 @@ export default function App() {
   }, []);
 
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <Meta />
         <Links />
@@ -89,7 +89,7 @@ export default function App() {
                         : "text-white hover:text-gray-200"
                     }`}
                   >
-                    Men
+                    Hombre
                   </a>
                   <a
                     href="/category/women"
@@ -99,7 +99,7 @@ export default function App() {
                         : "text-white hover:text-gray-200"
                     }`}
                   >
-                    Women
+                    Mujer
                   </a>
                 </div>
               </div>
@@ -147,21 +147,22 @@ export default function App() {
                 AMNESIA
               </a>
               <p className="font-montserrat text-gray-600 max-w-md text-sm tracking-wide">
-                Curating timeless elegance through carefully selected pieces
-                that transcend seasons and define modern sophistication.
+                Curando elegancia atemporal a través de piezas cuidadosamente
+                seleccionadas que trascienden temporadas y definen la
+                sofisticación moderna.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
               <div className="text-center md:text-left">
-                <h3 className="font-bodoni text-lg mb-6">About</h3>
+                <h3 className="font-bodoni text-lg mb-6">Nosotros</h3>
                 <ul className="space-y-4 font-montserrat text-sm">
                   <li>
                     <a
                       href="/about"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      Our Story
+                      Nuestra Historia
                     </a>
                   </li>
                   <li>
@@ -169,7 +170,7 @@ export default function App() {
                       href="/sustainability"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      Sustainability
+                      Sostenibilidad
                     </a>
                   </li>
                   <li>
@@ -177,21 +178,23 @@ export default function App() {
                       href="/careers"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      Careers
+                      Oportunidades
                     </a>
                   </li>
                 </ul>
               </div>
 
               <div className="text-center md:text-left">
-                <h3 className="font-bodoni text-lg mb-6">Customer Care</h3>
+                <h3 className="font-bodoni text-lg mb-6">
+                  Atención al Cliente
+                </h3>
                 <ul className="space-y-4 font-montserrat text-sm">
                   <li>
                     <a
                       href="/shipping"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      Shipping Information
+                      Información de Envío
                     </a>
                   </li>
                   <li>
@@ -199,7 +202,7 @@ export default function App() {
                       href="/returns"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      Returns & Exchanges
+                      Devoluciones e Intercambios
                     </a>
                   </li>
                   <li>
@@ -207,21 +210,21 @@ export default function App() {
                       href="/size-guide"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      Size Guide
+                      Guía de Tallas
                     </a>
                   </li>
                 </ul>
               </div>
 
               <div className="text-center md:text-left">
-                <h3 className="font-bodoni text-lg mb-6">Categories</h3>
+                <h3 className="font-bodoni text-lg mb-6">Categorías</h3>
                 <ul className="space-y-4 font-montserrat text-sm">
                   <li>
                     <a
                       href="/category/men"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      Men&apos;s Collection
+                      Colección Hombre
                     </a>
                   </li>
                   <li>
@@ -229,7 +232,7 @@ export default function App() {
                       href="/category/women"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      Women&apos;s Collection
+                      Colección Mujer
                     </a>
                   </li>
                   <li>
@@ -237,14 +240,14 @@ export default function App() {
                       href="/new-arrivals"
                       className="text-gray-600 hover:text-black transition-colors"
                     >
-                      New Arrivals
+                      Nuevas Llegadas
                     </a>
                   </li>
                 </ul>
               </div>
 
               <div className="text-center md:text-left">
-                <h3 className="font-bodoni text-lg mb-6">Contact</h3>
+                <h3 className="font-bodoni text-lg mb-6">Contacto</h3>
                 <ul className="space-y-4 font-montserrat text-sm">
                   <li className="text-gray-600">
                     <span className="block font-medium text-black mb-1">
@@ -254,13 +257,13 @@ export default function App() {
                   </li>
                   <li className="text-gray-600">
                     <span className="block font-medium text-black mb-1">
-                      Phone
+                      Teléfono
                     </span>
                     +1 (555) 123-4567
                   </li>
                   <li className="text-gray-600">
                     <span className="block font-medium text-black mb-1">
-                      Location
+                      Ubicación
                     </span>
                     123 Fashion Street
                     <br />
@@ -272,7 +275,8 @@ export default function App() {
 
             <div className="text-center font-montserrat text-xs text-gray-500 pt-8 border-t border-gray-100">
               <p>
-                &copy; {new Date().getFullYear()} AMNESIA. All rights reserved.
+                &copy; {new Date().getFullYear()} AMNESIA. Todos los derechos
+                reservados.
               </p>
             </div>
           </div>

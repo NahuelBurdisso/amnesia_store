@@ -1,26 +1,26 @@
 import { FaTrash, FaArrowLeft } from "react-icons/fa";
 
-// Mock cart data - In a real app, this would come from a state management solution
+// Mock cart data - En una aplicación real, esto vendría de una solución de gestión de estado
 const cartItems = [
   {
     id: 1,
-    name: "Classic White T-Shirt",
+    name: "Camiseta Blanca Clásica",
     price: 29.99,
     image:
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     quantity: 2,
     size: "M",
-    color: "White",
+    color: "Blanco",
   },
   {
     id: 2,
-    name: "Summer Dress",
+    name: "Vestido de Verano",
     price: 49.99,
     image:
       "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     quantity: 1,
     size: "S",
-    color: "Blue",
+    color: "Azul",
   },
 ];
 
@@ -34,22 +34,22 @@ export default function Cart() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
+      <h1 className="text-3xl font-bold mb-8">Carrito de Compras</h1>
 
       {cartItems.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-600 mb-4">Your cart is empty</p>
+          <p className="text-gray-600 mb-4">Tu carrito está vacío</p>
           <a
             href="/"
             className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800"
           >
             <FaArrowLeft />
-            Continue Shopping
+            Continuar Comprando
           </a>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Cart Items */}
+          {/* Artículos del Carrito */}
           <div className="lg:col-span-2">
             <div className="space-y-4">
               {cartItems.map((item) => (
@@ -62,7 +62,7 @@ export default function Cart() {
                   <div className="flex-grow">
                     <h3 className="font-medium">{item.name}</h3>
                     <p className="text-gray-600 text-sm">
-                      Size: {item.size} | Color: {item.color}
+                      Talla: {item.size} | Color: {item.color}
                     </p>
                     <div className="flex items-center gap-4 mt-2">
                       <select
@@ -85,7 +85,7 @@ export default function Cart() {
                       ${(item.price * item.quantity).toFixed(2)}
                     </p>
                     <p className="text-sm text-gray-600">
-                      ${item.price.toFixed(2)} each
+                      ${item.price.toFixed(2)} cada uno
                     </p>
                   </div>
                 </div>
@@ -93,17 +93,17 @@ export default function Cart() {
             </div>
           </div>
 
-          {/* Order Summary */}
+          {/* Resumen del Pedido */}
           <div className="lg:col-span-1">
             <div className="border rounded-lg p-6">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-bold mb-4">Resumen del Pedido</h2>
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Shipping</span>
+                  <span>Envío</span>
                   <span>${shipping.toFixed(2)}</span>
                 </div>
                 <div className="border-t pt-2 mt-2">
@@ -114,7 +114,7 @@ export default function Cart() {
                 </div>
               </div>
               <button className="w-full bg-black text-white py-3 rounded-md hover:bg-gray-800 transition">
-                Proceed to Checkout
+                Proceder al Pago
               </button>
             </div>
           </div>

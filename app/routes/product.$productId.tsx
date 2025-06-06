@@ -2,33 +2,32 @@ import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
 
-// Mock data - In a real app, this would come from a database
+// Mock data - En una aplicación real, esto vendría de una base de datos
 const products = [
   {
     id: "1",
-    name: "Classic White T-Shirt",
+    name: "Camiseta Blanca Clásica",
     price: 29.99,
     description:
-      "A timeless white t-shirt made from 100% organic cotton. Perfect for everyday wear, this essential piece features a comfortable fit and excellent durability.",
+      "Una camiseta blanca atemporal hecha de 100% algodón orgánico. Perfecta para el uso diario, esta pieza esencial cuenta con un ajuste cómodo y excelente durabilidad.",
     image:
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     category: "men",
     sizes: ["S", "M", "L", "XL"],
-    colors: ["White", "Black", "Gray"],
+    colors: ["Blanco", "Negro", "Gris"],
   },
   {
     id: "2",
-    name: "Summer Dress",
+    name: "Vestido de Verano",
     price: 49.99,
     description:
-      "A beautiful summer dress perfect for warm days. Made from lightweight, breathable fabric with a flattering silhouette.",
+      "Un hermoso vestido de verano perfecto para días cálidos. Hecho de tela ligera y transpirable con una silueta favorecedora.",
     image:
       "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     category: "women",
     sizes: ["XS", "S", "M", "L"],
-    colors: ["Blue", "Pink", "White"],
+    colors: ["Azul", "Rosa", "Blanco"],
   },
-  // Add more products...
 ];
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -36,7 +35,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   const product = products.find((p) => p.id === productId);
 
   if (!product) {
-    throw new Response("Product not found", { status: 404 });
+    throw new Response("Producto no encontrado", { status: 404 });
   }
 
   return json({ product });
@@ -48,7 +47,7 @@ export default function Product() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Product Image */}
+        {/* Imagen del Producto */}
         <div className="relative aspect-square">
           <img
             src={product.image}
@@ -57,7 +56,7 @@ export default function Product() {
           />
         </div>
 
-        {/* Product Info */}
+        {/* Información del Producto */}
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
           <p className="text-2xl font-semibold mb-6">
@@ -66,9 +65,9 @@ export default function Product() {
 
           <p className="text-gray-600 mb-8">{product.description}</p>
 
-          {/* Size Selection */}
+          {/* Selección de Talla */}
           <div className="mb-6">
-            <h3 className="font-medium mb-3">Size</h3>
+            <h3 className="font-medium mb-3">Talla</h3>
             <div className="flex gap-2">
               {product.sizes.map((size) => (
                 <button
@@ -81,7 +80,7 @@ export default function Product() {
             </div>
           </div>
 
-          {/* Color Selection */}
+          {/* Selección de Color */}
           <div className="mb-8">
             <h3 className="font-medium mb-3">Color</h3>
             <div className="flex gap-2">
@@ -96,11 +95,11 @@ export default function Product() {
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Botones de Acción */}
           <div className="flex gap-4">
             <button className="flex-1 flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition">
               <FaShoppingCart />
-              Add to Cart
+              Agregar al Carrito
             </button>
             <button className="p-3 border rounded-md hover:bg-gray-50 transition">
               <FaHeart />
