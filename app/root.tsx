@@ -67,16 +67,24 @@ export default function App() {
         <Links />
       </head>
       <body className="min-h-screen flex flex-col bg-white">
-        <header
-          className={`fixed w-full z-50 transition-all duration-300 ${
-            isScrolled
-              ? "bg-white/95 backdrop-blur-md shadow-sm"
-              : isHomePage
-              ? "bg-transparent"
-              : "bg-white"
-          }`}
-        >
-          <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="fixed w-full z-50 top-0">
+          <div
+            className={`absolute inset-0 ${
+              isScrolled
+                ? "bg-white/50 shadow-sm"
+                : isHomePage
+                ? "bg-transparent"
+                : "bg-white/50"
+            } ${
+              isScrolled || !isHomePage ? "opacity-100" : "opacity-0"
+            } transition-opacity duration-700`}
+          />
+          <div
+            className={`absolute inset-0 backdrop-blur-sm ${
+              isScrolled ? "opacity-50" : "opacity-0"
+            } transition-opacity duration-700`}
+          />
+          <nav className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="flex items-center justify-between h-16 sm:h-20">
               <div className="flex-shrink-0">
                 <a
@@ -92,7 +100,7 @@ export default function App() {
               <div className="hidden lg:flex items-center space-x-8">
                 <a
                   href="/category/men"
-                  className={`text-sm xl:text-base transition-colors ${
+                  className={`font-bodoni text-sm xl:text-base transition-colors ${
                     isScrolled || !isHomePage
                       ? "text-black hover:text-gray-600"
                       : "text-white hover:text-gray-200"
@@ -102,7 +110,7 @@ export default function App() {
                 </a>
                 <a
                   href="/category/women"
-                  className={`text-sm xl:text-base transition-colors ${
+                  className={`font-bodoni text-sm xl:text-base transition-colors ${
                     isScrolled || !isHomePage
                       ? "text-black hover:text-gray-600"
                       : "text-white hover:text-gray-200"
@@ -170,30 +178,71 @@ export default function App() {
             </div>
 
             {isMobileMenuOpen && (
-              <div className="lg:hidden">
-                <div className="px-2 pt-2 pb-6 space-y-4 bg-white border-t border-gray-100">
-                  <div className="flex flex-col space-y-4">
-                    <a
-                      href="/category/men"
-                      className="block px-3 py-2 text-base font-medium text-black hover:text-gray-600 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Hombre
-                    </a>
-                    <a
-                      href="/category/women"
-                      className="block px-3 py-2 text-base font-medium text-black hover:text-gray-600 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Mujer
-                    </a>
-                    <div className="flex items-center space-x-6 px-3 pt-4 border-t border-gray-100">
-                      <button className="text-black hover:text-gray-600 transition-colors">
-                        <FaSearch className="w-5 h-5" />
-                      </button>
-                      <button className="text-black hover:text-gray-600 transition-colors">
-                        <FaUser className="w-5 h-5" />
-                      </button>
+              <div className="lg:hidden relative z-10">
+                <div className="relative">
+                  <div
+                    className={`absolute inset-0 ${
+                      isHomePage && !isScrolled
+                        ? "bg-gradient-to-b from-black to-[#121213]/90"
+                        : "bg-white"
+                    } opacity-100 transition-opacity duration-700`}
+                  />
+                  <div
+                    className={`px-2 pt-2 pb-6 space-y-4 border-t relative ${
+                      isHomePage && !isScrolled
+                        ? "border-white/20"
+                        : "border-gray-100"
+                    } transition-colors duration-700`}
+                  >
+                    <div className="relative z-10 flex flex-col space-y-4">
+                      <a
+                        href="/category/men"
+                        className={`block px-3 py-2 text-base font-bodoni font-medium transition-colors ${
+                          isHomePage && !isScrolled
+                            ? "text-white hover:text-gray-200"
+                            : "text-black hover:text-gray-600"
+                        }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Hombre
+                      </a>
+                      <a
+                        href="/category/women"
+                        className={`block px-3 py-2 text-base font-bodoni font-medium transition-colors ${
+                          isHomePage && !isScrolled
+                            ? "text-white hover:text-gray-200"
+                            : "text-black hover:text-gray-600"
+                        }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Mujer
+                      </a>
+                      <div
+                        className={`flex items-center space-x-6 px-3 pt-4 border-t ${
+                          isHomePage && !isScrolled
+                            ? "border-white/20"
+                            : "border-gray-100"
+                        }`}
+                      >
+                        <button
+                          className={`transition-colors ${
+                            isHomePage && !isScrolled
+                              ? "text-white hover:text-gray-200"
+                              : "text-black hover:text-gray-600"
+                          }`}
+                        >
+                          <FaSearch className="w-5 h-5" />
+                        </button>
+                        <button
+                          className={`transition-colors ${
+                            isHomePage && !isScrolled
+                              ? "text-white hover:text-gray-200"
+                              : "text-black hover:text-gray-600"
+                          }`}
+                        >
+                          <FaUser className="w-5 h-5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -202,7 +251,7 @@ export default function App() {
           </nav>
         </header>
 
-        <main className="flex-grow pt-16 sm:pt-20">
+        <main className="flex-grow">
           <Outlet />
         </main>
 

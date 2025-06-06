@@ -1,4 +1,5 @@
 import { FaArrowRight } from "react-icons/fa";
+import { useEffect, useState, useRef } from "react";
 
 const featuredProducts = [
   {
@@ -36,11 +37,113 @@ const featuredProducts = [
   },
 ];
 
+// Ripple Animation Configuration
+const RIPPLE_CONFIG = {
+  frequency: 3000, // milliseconds between ripples (lower = more frequent)
+  minStartTime: 0, // minimum animation start delay (ms)
+  maxEndTime: 6000, // maximum animation duration (ms)
+  maxRipples: 4, // maximum number of active ripples
+  minSize: 12, // minimum ripple size (px)
+  maxSize: 20, // maximum ripple size (px)
+  minScale: 8, // minimum final scale
+  maxScale: 15, // maximum final scale
+  minOpacity: 0.2, // minimum opacity
+  maxOpacity: 0.5, // maximum opacity
+};
+
+interface Ripple {
+  id: number;
+  x: number; // percentage
+  y: number; // percentage
+  size: number;
+  scale: number;
+  opacity: number;
+  duration: number;
+  delay: number;
+  createdAt: number; // timestamp when ripple was created
+}
+
 export default function Index() {
+  const [shouldReduceMotion, setShouldReduceMotion] = useState(false);
+  const [ripples, setRipples] = useState<Ripple[]>([]);
+  const rippleIdCounter = useRef(0);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setShouldReduceMotion(mediaQuery.matches);
+
+    const handleChange = () => setShouldReduceMotion(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  // Generate random ripples
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const generateRipple = (): Ripple => {
+      rippleIdCounter.current += 1;
+
+      return {
+        id: rippleIdCounter.current,
+        x: Math.random() * 80 + 10, // 10% to 90% to avoid edges
+        y: Math.random() * 60 + 20, // 20% to 80% to avoid header/footer
+        size:
+          Math.random() * (RIPPLE_CONFIG.maxSize - RIPPLE_CONFIG.minSize) +
+          RIPPLE_CONFIG.minSize,
+        scale:
+          Math.random() * (RIPPLE_CONFIG.maxScale - RIPPLE_CONFIG.minScale) +
+          RIPPLE_CONFIG.minScale,
+        opacity:
+          Math.random() *
+            (RIPPLE_CONFIG.maxOpacity - RIPPLE_CONFIG.minOpacity) +
+          RIPPLE_CONFIG.minOpacity,
+        duration: Math.random() * (RIPPLE_CONFIG.maxEndTime - 2000) + 2000, // 2s to maxEndTime
+        delay: Math.random() * RIPPLE_CONFIG.minStartTime,
+        createdAt: Date.now(),
+      };
+    };
+
+    const addRipple = () => {
+      setRipples((prev) => {
+        const newRipples = [...prev, generateRipple()];
+        // Keep only the latest ripples to prevent memory buildup
+        return newRipples.slice(-RIPPLE_CONFIG.maxRipples);
+      });
+    };
+
+    // Add initial ripple after a short delay
+    const initialTimeout = setTimeout(() => {
+      addRipple();
+    }, 1000);
+
+    // Set up interval for new ripples
+    const interval = setInterval(addRipple, RIPPLE_CONFIG.frequency);
+
+    // Clean up ripples that have finished animating
+    const cleanupInterval = setInterval(() => {
+      setRipples((prev) => {
+        const now = Date.now();
+        return prev.filter((ripple) => {
+          const rippleAge = now - ripple.createdAt;
+          const totalDuration = ripple.duration + ripple.delay;
+          return rippleAge < totalDuration + 1000; // Add 1s buffer
+        });
+      });
+    }, 2000); // Check every 2 seconds
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+      clearInterval(cleanupInterval);
+    };
+  }, [shouldReduceMotion]); // Only depend on shouldReduceMotion
+
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative h-screen bg-black">
+      {/* Hero Section - Extends behind header */}
+      <section className="relative h-[100vh] bg-black overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -48,6 +151,71 @@ export default function Index() {
             backgroundPosition: "center 30%",
           }}
         />
+
+        {/* Dynamic Water Ripple Effects */}
+        {!shouldReduceMotion && (
+          <div className="absolute inset-0 pointer-events-none z-10">
+            {ripples.map((ripple) => (
+              <div
+                key={ripple.id}
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{
+                  left: `${ripple.x}%`,
+                  top: `${ripple.y}%`,
+                }}
+              >
+                {/* Multiple concentric rings for each ripple with realistic physics */}
+                <div
+                  className="absolute rounded-full border-white animate-ripple-fast -translate-x-1/2 -translate-y-1/2"
+                  style={
+                    {
+                      width: `${ripple.size}px`,
+                      height: `${ripple.size}px`,
+                      borderColor: `rgba(255, 255, 255, ${ripple.opacity})`,
+                      animationDuration: `${ripple.duration * 0.7}ms`, // Fastest ring
+                      animationDelay: `${ripple.delay}ms`,
+                      "--ripple-scale": ripple.scale * 0.6,
+                      borderRadius: `${45 + Math.random() * 10}%`, // Slight irregularity
+                    } as React.CSSProperties & { "--ripple-scale": number }
+                  }
+                />
+                <div
+                  className="absolute rounded-full border-white animate-ripple-dynamic -translate-x-1/2 -translate-y-1/2"
+                  style={
+                    {
+                      width: `${ripple.size}px`,
+                      height: `${ripple.size}px`,
+                      borderColor: `rgba(255, 255, 255, ${
+                        ripple.opacity * 0.7
+                      })`,
+                      animationDuration: `${ripple.duration}ms`, // Medium speed
+                      animationDelay: `${ripple.delay + 200}ms`,
+                      "--ripple-scale": ripple.scale * 0.8,
+                      borderRadius: `${45 + Math.random() * 10}%`, // Slight irregularity
+                    } as React.CSSProperties & { "--ripple-scale": number }
+                  }
+                />
+                <div
+                  className="absolute rounded-full border-white animate-ripple-slow -translate-x-1/2 -translate-y-1/2"
+                  style={
+                    {
+                      width: `${ripple.size}px`,
+                      height: `${ripple.size}px`,
+                      borderColor: `rgba(255, 255, 255, ${
+                        ripple.opacity * 0.4
+                      })`,
+                      animationDuration: `${ripple.duration * 1.3}ms`, // Slowest ring
+                      animationDelay: `${ripple.delay + 400}ms`,
+                      "--ripple-scale": ripple.scale,
+                      borderRadius: `${45 + Math.random() * 10}%`, // Slight irregularity
+                    } as React.CSSProperties & { "--ripple-scale": number }
+                  }
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
           <h1 className="font-bodoni text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 text-white max-w-4xl">
             Elegancia
@@ -57,13 +225,13 @@ export default function Index() {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
             <a
               href="/category/men"
-              className="text-base sm:text-lg text-white hover:text-gray-300 transition-colors flex items-center justify-center sm:justify-start gap-2 py-2"
+              className="font-bodoni text-base sm:text-lg text-white hover:text-gray-300 transition-colors flex items-center justify-center sm:justify-start gap-2 py-2"
             >
               Comprar Hombre <FaArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
             </a>
             <a
               href="/category/women"
-              className="text-base sm:text-lg text-white hover:text-gray-300 transition-colors flex items-center justify-center sm:justify-start gap-2 py-2"
+              className="font-bodoni text-base sm:text-lg text-white hover:text-gray-300 transition-colors flex items-center justify-center sm:justify-start gap-2 py-2"
             >
               Comprar Mujer <FaArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
             </a>
