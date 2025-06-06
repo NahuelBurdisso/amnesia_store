@@ -13,16 +13,16 @@ import "./tailwind.css";
 import { FaShoppingCart, FaUser, FaSearch } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Amnesia Store | Timeless Elegance" },
-    {
-      name: "description",
-      content:
-        "Discover timeless fashion at Amnesia Store. Shop our curated collection of elegant clothing and accessories.",
-    },
-  ];
-};
+export const meta: MetaFunction = () => [
+  { title: "Amnesia Store | Timeless Elegance" },
+  {
+    name: "description",
+    content:
+      "Discover timeless fashion at Amnesia Store. Shop our curated collection of elegant clothing and accessories.",
+  },
+  { name: "viewport", content: "width=device-width,initial-scale=1" },
+  { charSet: "utf-8" },
+];
 
 export const links: LinksFunction = () => [
   { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
@@ -56,8 +56,6 @@ export default function App() {
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
