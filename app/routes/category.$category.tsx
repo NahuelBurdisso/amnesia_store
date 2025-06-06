@@ -1,7 +1,16 @@
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { FaFilter, FaSortAmountDown } from "react-icons/fa";
 import { useState } from "react";
+import { ProductFilters } from "~/components/ProductFilters";
+import { SortAsc } from "lucide-react";
+
+interface FilterState {
+  category?: string;
+  size?: string;
+  color?: string;
+  priceRange?: string;
+  brand?: string[];
+}
 
 // Mock data - En una aplicación real, esto vendría de una base de datos
 const products = {
@@ -136,7 +145,20 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function Category() {
   const { category, products, categoryName } = useLoaderData<typeof loader>();
-  const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState<FilterState>({});
+  const [sortBy, setSortBy] = useState<string>("default");
+
+  const handleFiltersChange = (newFilters: FilterState) => {
+    setFilters(newFilters);
+    // Here you would typically filter the products based on the new filters
+    console.log("Category filters changed:", newFilters);
+  };
+
+  const handleSortChange = (value: string) => {
+    setSortBy(value);
+    // Here you would typically sort the products
+    console.log("Sort changed:", value);
+  };
 
   return (
     <div className="min-h-screen">
@@ -156,72 +178,34 @@ export default function Category() {
         </div>
       </section>
 
-      {/* Filters and Sort */}
-      <section className="py-6 sm:py-8 bg-gray-50/50 sticky top-16 sm:top-20 z-30">
+      {/* Product Filters */}
+      <ProductFilters onFiltersChange={handleFiltersChange} />
+
+      {/* Products Count and Sort */}
+      <section className="py-4 sm:py-6 bg-gray-50/30 border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <p className="font-montserrat text-sm text-gray-600">
-              {products.length} productos
+              {products.length} productos encontrados
+              {Object.keys(filters).length > 0 && " (filtrados)"}
             </p>
 
-            <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 font-montserrat text-sm border border-gray-200 hover:border-gray-300 transition-colors bg-white"
+            <div className="flex items-center gap-2">
+              <SortAsc className="w-4 h-4 text-gray-500" />
+              <select
+                value={sortBy}
+                onChange={(e) => handleSortChange(e.target.value)}
+                className="px-3 py-2 font-montserrat text-sm border border-gray-200 bg-white hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 rounded-md"
               >
-                <FaFilter className="w-3 h-3" />
-                Filtros
-              </button>
-
-              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 font-montserrat text-sm border border-gray-200 hover:border-gray-300 transition-colors bg-white">
-                <FaSortAmountDown className="w-3 h-3" />
-                Ordenar
-              </button>
+                <option value="default">Ordenar por</option>
+                <option value="price-asc">Precio: Menor a Mayor</option>
+                <option value="price-desc">Precio: Mayor a Menor</option>
+                <option value="name-asc">Nombre: A-Z</option>
+                <option value="name-desc">Nombre: Z-A</option>
+                <option value="newest">Más Recientes</option>
+              </select>
             </div>
           </div>
-
-          {/* Mobile Filters */}
-          {showFilters && (
-            <div className="mt-4 p-4 bg-white border border-gray-200 rounded-none sm:hidden">
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-montserrat font-medium mb-2 text-sm">
-                    Precio
-                  </h3>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input type="checkbox" className="mr-2" />
-                      <span className="text-sm">Menos de $50</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input type="checkbox" className="mr-2" />
-                      <span className="text-sm">$50 - $100</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input type="checkbox" className="mr-2" />
-                      <span className="text-sm">Más de $100</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="font-montserrat font-medium mb-2 text-sm">
-                    Talla
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {["XS", "S", "M", "L", "XL"].map((size) => (
-                      <button
-                        key={size}
-                        className="px-3 py-1 text-sm border border-gray-200 hover:border-gray-300 transition-colors"
-                      >
-                        {size}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 

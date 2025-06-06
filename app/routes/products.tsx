@@ -1,4 +1,23 @@
+import { useState } from "react";
+import { ProductFilters } from "~/components/ProductFilters";
+
+interface FilterState {
+  category?: string;
+  size?: string;
+  color?: string;
+  priceRange?: string;
+  brand?: string[];
+}
+
 export default function Products() {
+  const [filters, setFilters] = useState<FilterState>({});
+
+  const handleFiltersChange = (newFilters: FilterState) => {
+    setFilters(newFilters);
+    // Here you would typically fetch filtered products from your API
+    console.log("Filters changed:", newFilters);
+  };
+
   return (
     <div className="min-h-screen">
       {/* Header Section */}
@@ -15,11 +34,20 @@ export default function Products() {
         </div>
       </section>
 
+      {/* Product Filters */}
+      <ProductFilters onFiltersChange={handleFiltersChange} />
+
       {/* Products Grid */}
       <section className="py-8 sm:py-12 lg:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
             {/* Products will be dynamically loaded here */}
+            {Object.keys(filters).length > 0 && (
+              <div className="col-span-full text-center text-gray-500 font-montserrat">
+                Aplicando filtros... {JSON.stringify(filters, null, 2)}
+              </div>
+            )}
+            {/* You can now use the filters state to fetch and display filtered products */}
           </div>
         </div>
       </section>

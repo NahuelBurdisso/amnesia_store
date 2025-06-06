@@ -83,7 +83,7 @@ export default function App() {
               <div className="flex-shrink-0">
                 <a
                   href="/"
-                  className={`text-2xl sm:text-3xl font-bodoni transition-colors ${
+                  className={`text-xl sm:text-3xl font-bodoni transition-colors ${
                     isScrolled || !isHomePage ? "text-black" : "text-white"
                   }`}
                 >
