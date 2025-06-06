@@ -8,7 +8,7 @@ export default function Returns() {
             Devoluciones e Intercambios
           </h1>
           <p className="font-montserrat max-w-2xl mx-auto text-base sm:text-lg lg:text-xl leading-relaxed">
-            Política de devoluciones simple y transparente para tu tranquilidad.
+            Política de devoluciones simple y transparente para tu tranquilidad
           </p>
         </div>
       </section>
@@ -19,116 +19,127 @@ export default function Returns() {
           <div className="max-w-4xl mx-auto">
             {/* Returns Policy */}
             <div className="mb-16 sm:mb-20">
-              <h2 className="font-bodoni text-3xl sm:text-4xl mb-8 text-center">
-                Nuestra Política
+              <h2 className="font-bodoni text-3xl sm:text-4xl mb-8">
+                Política de Devoluciones
               </h2>
               <div className="space-y-6">
-                <p className="font-montserrat text-gray-600 text-sm sm:text-base leading-relaxed">
+                <p className="font-montserrat text-gray-600 text-sm sm:text-base">
                   En AMNESIA, queremos que estés completamente satisfecho con tu
                   compra. Aceptamos devoluciones dentro de los 30 días
-                  posteriores a la recepción de tu pedido. Los artículos deben
-                  estar sin usar, con todas las etiquetas originales y en su
-                  embalaje original.
+                  posteriores a la recepción de tu pedido.
                 </p>
-                <p className="font-montserrat text-gray-600 text-sm sm:text-base leading-relaxed">
-                  Para los intercambios, ofrecemos un proceso simple que te
-                  permite seleccionar un tamaño o color diferente del mismo
-                  artículo sin costo adicional.
-                </p>
+                <div className="border border-gray-200 p-6">
+                  <h3 className="font-bodoni text-xl mb-4">Condiciones</h3>
+                  <ul className="font-montserrat text-gray-600 space-y-2 text-sm sm:text-base">
+                    <li>
+                      • Las prendas deben estar sin usar y con todas las
+                      etiquetas originales
+                    </li>
+                    <li>• El embalaje original debe estar intacto</li>
+                    <li>• Debes incluir el recibo o comprobante de compra</li>
+                    <li>
+                      • Los artículos en rebajas solo pueden ser devueltos por
+                      defectos de fabricación
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            {/* Process Steps */}
+            {/* Exchange Process */}
             <div className="mb-16 sm:mb-20">
-              <h2 className="font-bodoni text-3xl sm:text-4xl mb-8 text-center">
-                Proceso de Devolución
+              <h2 className="font-bodoni text-3xl sm:text-4xl mb-8">
+                Proceso de Intercambio
               </h2>
-              <div className="space-y-8">
-                <div className="border border-gray-200 p-6 sm:p-8">
-                  <h3 className="font-bodoni text-xl mb-4">
-                    1. Inicia tu Devolución
-                  </h3>
-                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
-                    Accede a tu cuenta y selecciona el pedido que deseas
-                    devolver. También puedes contactar con nuestro servicio de
-                    atención al cliente para iniciar el proceso.
-                  </p>
-                </div>
-
-                <div className="border border-gray-200 p-6 sm:p-8">
-                  <h3 className="font-bodoni text-xl mb-4">
-                    2. Empaqueta tu Artículo
-                  </h3>
-                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
-                    Coloca el artículo en su embalaje original con todas las
-                    etiquetas intactas. Incluye el formulario de devolución que
-                    recibiste con tu pedido.
-                  </p>
-                </div>
-
-                <div className="border border-gray-200 p-6 sm:p-8">
-                  <h3 className="font-bodoni text-xl mb-4">
-                    3. Envía el Paquete
-                  </h3>
-                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
-                    Utiliza la etiqueta de devolución prepagada que te
-                    proporcionamos y envía el paquete a través de nuestro
-                    servicio de mensajería asociado.
-                  </p>
-                </div>
-
-                <div className="border border-gray-200 p-6 sm:p-8">
-                  <h3 className="font-bodoni text-xl mb-4">4. Reembolso</h3>
-                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
-                    Una vez recibida y procesada tu devolución, recibirás el
-                    reembolso en tu método de pago original en un plazo de 5-7
-                    días hábiles.
-                  </p>
+              <div className="space-y-6">
+                <p className="font-montserrat text-gray-600 text-sm sm:text-base">
+                  Si necesitas un tamaño o color diferente, estaremos encantados
+                  de ayudarte con el intercambio.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="border border-gray-200 p-6">
+                    <h3 className="font-bodoni text-xl mb-4">Online</h3>
+                    <ol className="font-montserrat text-gray-600 space-y-2 text-sm sm:text-base">
+                      <li>1. Accede a tu cuenta</li>
+                      <li>2. Selecciona el pedido</li>
+                      <li>3. Elige &quot;Solicitar Intercambio&quot;</li>
+                      <li>4. Sigue las instrucciones</li>
+                    </ol>
+                  </div>
+                  <div className="border border-gray-200 p-6">
+                    <h3 className="font-bodoni text-xl mb-4">En Tienda</h3>
+                    <ol className="font-montserrat text-gray-600 space-y-2 text-sm sm:text-base">
+                      <li>1. Visita cualquier tienda</li>
+                      <li>2. Presenta el recibo</li>
+                      <li>3. Selecciona el nuevo artículo</li>
+                      <li>4. Realiza el intercambio</li>
+                    </ol>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Additional Information */}
-            <div className="space-y-8 mb-16 sm:mb-20">
-              <h2 className="font-bodoni text-3xl sm:text-4xl mb-8 text-center">
-                Información Importante
+            {/* Refund Information */}
+            <div className="mb-16 sm:mb-20">
+              <h2 className="font-bodoni text-3xl sm:text-4xl mb-8">
+                Información de Reembolso
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-bodoni text-xl mb-3">
-                    Artículos en Rebajas
+              <div className="space-y-6">
+                <p className="font-montserrat text-gray-600 text-sm sm:text-base">
+                  Los reembolsos se procesarán utilizando el mismo método de
+                  pago de la compra original.
+                </p>
+                <div className="border border-gray-200 p-6">
+                  <h3 className="font-bodoni text-xl mb-4">
+                    Plazos de Reembolso
                   </h3>
-                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
-                    Los artículos comprados durante el período de rebajas pueden
-                    ser devueltos siguiendo nuestra política estándar.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-bodoni text-xl mb-3">Ropa Interior</h3>
-                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
-                    Por razones de higiene, no aceptamos devoluciones de ropa
-                    interior o trajes de baño sin el protector higiénico.
-                  </p>
+                  <ul className="font-montserrat text-gray-600 space-y-2 text-sm sm:text-base">
+                    <li>• Tarjeta de crédito: 5-7 días hábiles</li>
+                    <li>• PayPal: 2-3 días hábiles</li>
+                    <li>• Transferencia bancaria: 5-7 días hábiles</li>
+                  </ul>
                 </div>
               </div>
             </div>
 
-            {/* Contact Section */}
-            <div className="text-center">
-              <h2 className="font-bodoni text-2xl sm:text-3xl mb-4">
-                ¿Necesitas Ayuda?
+            {/* FAQ */}
+            <div>
+              <h2 className="font-bodoni text-3xl sm:text-4xl mb-8">
+                Preguntas Frecuentes
               </h2>
-              <p className="font-montserrat text-gray-600 text-sm sm:text-base mb-6">
-                Nuestro equipo de atención al cliente está disponible para
-                ayudarte con cualquier consulta sobre devoluciones o
-                intercambios.
-              </p>
-              <a
-                href="mailto:returns@amnesia.com"
-                className="inline-block bg-black text-white px-6 py-3 font-montserrat text-sm hover:bg-gray-900 transition-colors"
-              >
-                Contactar
-              </a>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bodoni text-xl mb-2">
+                    ¿Cuánto tiempo tengo para devolver un artículo?
+                  </h3>
+                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
+                    Tienes 30 días desde la recepción de tu pedido para realizar
+                    la devolución.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-bodoni text-xl mb-2">
+                    ¿La devolución tiene algún costo?
+                  </h3>
+                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
+                    Las devoluciones son gratuitas cuando utilizas nuestra
+                    etiqueta de devolución prepagada o las realizas en tienda.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-bodoni text-xl mb-2">
+                    ¿Qué pasa si recibo un artículo defectuoso?
+                  </h3>
+                  <p className="font-montserrat text-gray-600 text-sm sm:text-base">
+                    Si recibes un artículo defectuoso, contáctanos
+                    inmediatamente. Cubriremos los gastos de envío y te
+                    enviaremos un reemplazo o realizaremos un reembolso
+                    completo.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
